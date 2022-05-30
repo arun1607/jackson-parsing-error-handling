@@ -26,8 +26,8 @@ public class RestErrorHandler extends ResponseEntityExceptionHandler {
     final Throwable mostSpecificCause = ex.getMostSpecificCause();
     final ErrorResponse errorResponse;
     if (mostSpecificCause != null) {
-      final String exceptionName = mostSpecificCause.getClass().getSimpleName();
-      if (UnrecognizedPropertyException.class.getSimpleName().equals(exceptionName)) {
+      final String exceptionName = mostSpecificCause.getClass().getName();
+      if (UnrecognizedPropertyException.class.getName().equals(exceptionName)) {
         UnrecognizedPropertyException cause = (UnrecognizedPropertyException) mostSpecificCause;
         errorResponse = new ErrorResponse("Unknown property " + cause.getPropertyName());
       } else {
